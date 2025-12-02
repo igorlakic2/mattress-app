@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router";
-import HomePage from "./pages/HomePage";
+import HomePage from "./pages/home-page/HomePage";
 
 const Content = () => {
   return (
