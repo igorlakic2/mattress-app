@@ -8,10 +8,8 @@ import IconButton from "@mui/material/IconButton";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 import { Link } from "react-router";
 
 interface Props {
@@ -23,7 +21,12 @@ interface Props {
 }
 
 const drawerWidth = 240;
-const navItems = ["Početna", "Katalog", "Kalkulator cena", "Kontakt"];
+const navItems = [
+  { label: "Početna", url: "/" },
+  { label: "Proizvodi", url: "/proizvodi" },
+  { label: "Kalkulator cena", url: "/kalkulator-cena" },
+  { label: "Kontakt", url: "/kontakt" },
+];
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
@@ -34,7 +37,7 @@ export default function DrawerAppBar(props: Props) {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+    <div onClick={handleDrawerToggle} className="app-drawer text-center">
       <div
         className="w-full flex justify-center"
         style={{ backgroundColor: "#232223" }}
@@ -47,23 +50,25 @@ export default function DrawerAppBar(props: Props) {
         />
       </div>
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+      <List sx={{ textAlign: "center" }}>
+        {navItems.map((item, index) => (
+          <ListItem key={index} disablePadding>
             <ListItemButton sx={{ textAlign: "center" }}>
-              <ListItemText primary={item} />
+              <Link to={item.url} className="text-center">
+                {item.label}
+              </Link>
             </ListItemButton>
           </ListItem>
         ))}
       </List>
-    </Box>
+    </div>
   );
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <div className="flex app-topbar">
       <CssBaseline />
       <AppBar component="nav" sx={{ backgroundColor: "#232223", height: 100 }}>
         <Toolbar>
@@ -91,11 +96,9 @@ export default function DrawerAppBar(props: Props) {
               flex: 1,
             }}
           >
-            <div className="h-full flex flex-1 pb-3 gap-2 items-end justify-end">
+            <div className="h-full flex flex-1 pb-3 gap-6 items-end justify-end">
               {navItems.map((item) => (
-                <Button key={item} sx={{ color: "#fff" }}>
-                  {item}
-                </Button>
+                <Link to={item.url}>{item.label}</Link>
               ))}
             </div>
           </Box>
@@ -121,6 +124,6 @@ export default function DrawerAppBar(props: Props) {
           {drawer}
         </Drawer>
       </nav>
-    </Box>
+    </div>
   );
 }
