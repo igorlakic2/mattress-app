@@ -50,45 +50,28 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #d8c0a2;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.app-header {
-  height: 120px;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  background-color: #232223;
-  color: #f4f0f1;
-}
-
-.app-header img {
-  height: 100px;
-}
-
-.app-header a {
+.app-topbar a {
   color: #fffcfc;
 }
 
-.app-header a:hover {
+.app-topbar a:hover {
   color: #d8c0a2;
 }
 
-/* .app-header ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1.5rem;
-  flex: 1;
-  height: 100%;
-  align-items: end;
-  justify-content: end;
-} */
+.app-drawer a {
+  color: black;
+}
+
+.app-drawer a:hover {
+  color: #d8c0a2;
+}
 
 @media (prefers-color-scheme: light) {
   :root {
