@@ -1,8 +1,11 @@
 import { Button } from "@mui/material";
 import Carousel from "../../components/carousel/Carousel";
 import "./home.css";
+import { useNavigate } from "react-router";
 
 const HomePage = () => {
+  const navigate = useNavigate();
+
   return (
     <div>
       <Carousel />
@@ -22,8 +25,20 @@ const HomePage = () => {
           </p>
 
           <div className="flex gap-4 justify-center pt-4">
-            <Button variant="contained">Poruči odmah</Button>
-            <Button variant="contained">Kontaktiraj nas</Button>
+            <Button
+              variant="contained"
+              type="button"
+              onClick={() => navigate("/proizvodi")}
+            >
+              Poruči odmah
+            </Button>
+            <Button
+              variant="contained"
+              type="button"
+              onClick={() => navigate("/kontakt")}
+            >
+              Kontaktiraj nas
+            </Button>
           </div>
         </div>
       </section>
