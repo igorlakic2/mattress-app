@@ -61,6 +61,15 @@ button:focus-visible {
   color: #fffcfc;
 }
 
+.app-topbar a button {
+  color: #fffcfc;
+}
+
+.app-topbar a button .MuiBadge-badge {
+  background-color: #d8c0a2;
+  color: black;
+}
+
 .app-topbar a:hover {
   color: #d8c0a2;
 }

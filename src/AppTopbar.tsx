@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,6 +10,10 @@ import ListItemButton from "@mui/material/ListItemButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import { Link } from "react-router";
+import { Badge } from "@mui/material";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import { useState } from "react";
+import { useCart } from "./CartContext";
 
 interface Props {
   /**
@@ -30,7 +33,8 @@ const navItems = [
 
 export default function DrawerAppBar(props: Props) {
   const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { count } = useCart();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -97,9 +101,37 @@ export default function DrawerAppBar(props: Props) {
             }}
           >
             <div className="h-full flex flex-1 pb-3 gap-6 items-end justify-end">
-              {navItems.map((item) => (
-                <Link to={item.url}>{item.label}</Link>
-              ))}
+              <div className="flex gap-6 items-center">
+                {navItems.map((item) => (
+                  <Link to={item.url}>{item.label}</Link>
+                ))}
+                <Link to="/korpa">
+                  <IconButton aria-label="cart">
+                    <Badge badgeContent={count} color="secondary">
+                      <ShoppingCartIcon />
+                    </Badge>
+                  </IconButton>
+                </Link>
+              </div>
+            </div>
+          </Box>
+          <Box
+            sx={{
+              display: { xs: "flex", sm: "none" },
+              height: "100%",
+              flex: 1,
+            }}
+          >
+            <div className="h-full flex flex-1 pb-3 gap-6 items-end justify-end">
+              <div className="flex gap-6 items-center">
+                <Link to="/korpa">
+                  <IconButton aria-label="cart">
+                    <Badge badgeContent={count} color="secondary">
+                      <ShoppingCartIcon />
+                    </Badge>
+                  </IconButton>
+                </Link>
+              </div>
             </div>
           </Box>
         </Toolbar>
