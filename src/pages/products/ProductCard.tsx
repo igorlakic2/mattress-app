@@ -1,8 +1,12 @@
+import { EnumProductType } from "../../model/EnumProductType";
+import { useCart } from "../../CartContext";
+
 const ProductCard = ({
   data,
 }: {
   data: { length: number; width: number; price: number };
 }) => {
+  const { add } = useCart();
   const formatPrice = (value: number) => {
     return new Intl.NumberFormat("sr-RS", {
       minimumFractionDigits: 2,
@@ -33,7 +37,18 @@ const ProductCard = ({
             {formatPrice(data.price)} RSD
           </span>
 
-          <button className="rounded-xl bg-black px-4 py-2 text-sm font-medium transition hover:bg-gray-800">
+          <button
+            className="rounded-xl bg-black px-4 py-2 text-sm font-medium transition hover:bg-gray-800"
+            onClick={() => {
+              add({
+                length: data.length,
+                price: data.price,
+                type: EnumProductType.DUSEK,
+                width: data.width,
+                id: crypto.randomUUID(),
+              });
+            }}
+          >
             Dodaj u korpu
           </button>
         </div>
